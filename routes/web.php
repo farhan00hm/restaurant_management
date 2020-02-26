@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::group(['prefix'=>'admin', 'middleware'=>['admin','auth'],'namespace'=>'Admin'],function(){
     Route::get('dashboard','AdminDashboardController@index')->name('admin.dashboard');
+    Route::post('adduser','AdminDashboardController@store');
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['user','auth'],'namespace'=>'User'],function(){

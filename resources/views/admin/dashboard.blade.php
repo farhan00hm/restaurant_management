@@ -12,8 +12,8 @@ $users = User::all();
         <div class="col-md-12">
             <div class="overview-wrap">
                 <h2 class="title-1">overview</h2>
-                <button class="au-btn au-btn-icon au-btn--blue">
-                    <i class="zmdi zmdi-plus"></i>add item</button>
+                <button class="au-btn au-btn-icon au-btn--blue" data-toggle="modal" data-target="#modalLoginForm">
+                    <i class="zmdi zmdi-plus"></i>add User</button>
             </div>
         </div>
     </div>
@@ -94,7 +94,7 @@ $users = User::all();
 
     <div class="row">
         <div class="col-lg-9">
-            <h2 class="title-1 m-b-25">User's Information</h2>
+            <h2 class="title-1 m-b-25"><strong>User's Information</strong></h2>
             <div class="table-responsive table--no-card m-b-40">
                 <table class="table table-borderless table-striped table-earning">
                     <thead>
@@ -425,4 +425,97 @@ $users = User::all();
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('Add_User_Model')
+    {{--    Modal start--}}
+
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="false">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div style="margin: 10px;">
+                    <form action="/admin/adduser" method="POST" novalidate="novalidate">
+
+                        <div class="form-group">
+                            <label for="cc-payment" class="control-label mb-1"><strong>Resturant Name</strong></label>
+                            <input  name="name" type="text" class="form-control @error('name') is-invalid @enderror" aria-required="true" aria-invalid="false" value="">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="cc-payment" class="control-label mb-1"><strong>Email</strong></label>
+                            <input name="email" type="text" class="form-control @error('email') is-invalid @enderror" aria-required="true" aria-invalid="false" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cc-payment" class="control-label mb-1"><strong>Phone</strong></label>
+                            <input name="phone" type="text" class="form-control @error('email') is-invalid @enderror" aria-required="true" aria-invalid="false" value="">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="cc-payment" class="control-label mb-1"><strong>Role</strong></label><br>
+                            <label class="radio-inline" style="color:blue; padding: 5px;">
+                                <input type="radio" name="role" value=1> <strong>Admin</strong>
+                            </label>
+                            <label class="radio-inline" style="color:blue; padding: 5px;">
+                                <input type="radio" name="role" style="color:blue; padding: 5px;" value=2 checked> <strong>User</strong>
+                            </label>
+                            <label class="radio-inline" style="color:blue; padding: 5px;">
+                                <input type="radio" name="role" value=3><strong> Manager</strong>
+                            </label>
+                        </div>
+
+{{--                        <label class="@error('email') is-invalid @enderror "></label>--}}
+
+{{--                        @error('name')--}}
+{{--                        <span class="invalid-feedback" role="alert">--}}
+{{--                            <strong>{{ $message }}</strong>--}}
+{{--                        </span>--}}
+{{--                        @enderror--}}
+
+{{--                        @error('email','name')--}}
+{{--                        <span class="invalid-feedback" role="alert">--}}
+{{--                            <strong>{{ $message }}</strong>--}}
+{{--                        </span>--}}
+{{--                        <div class="alert alert-danger">{{ $message }}</div>--}}
+{{--                        @enderror--}}
+
+{{--                        @error('phone')--}}
+{{--                        <span class="invalid-feedback" role="alert">--}}
+{{--                            <strong>{{ $message }}</strong>--}}
+{{--                        </span>--}}
+{{--                        @enderror--}}
+
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
+                        <div>
+                            <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+                                <span id="payment-button-amount">Submit</span>
+                                <span id="payment-button-sending" style="display:none;">Sending…</span>
+                            </button>
+
+                            {{ csrf_field() }}
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--    Modal End--}}
 @endsection

@@ -23,7 +23,6 @@ class AdminDashboardController extends Controller
         $user->phone = $request->phone;
         $user->password = bcrypt($this->generatePassword(6));
         $user->role_id = $request->role;
-//        dd($user);
         $user->save();
         return redirect()->route('admin.dashboard');
 
@@ -32,8 +31,8 @@ class AdminDashboardController extends Controller
     public function validateUser(){
         return request()->validate([
             'name'=>'required',
-            'email'=>'required|unique:users',
-            'phone'=>'required|numeric|min:11',
+            'email'=>'required|email|unique:users',
+            'phone'=>'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:11',
         ]);
     }
 

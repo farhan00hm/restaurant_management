@@ -8,6 +8,27 @@ $users = User::all();
 @endphp
 
 @section('content')
+
+{{--    <div class="flash-message">--}}
+{{--        @if ($errors->any())--}}
+{{--            <div class="alert alert-danger">--}}
+
+{{--                <button type="button" class="close" data-dismiss="alert" aria-label="Close">--}}
+{{--                    <span aria-hidden="true">&times;</span>--}}
+{{--                </button>--}}
+
+{{--                <ul>--}}
+{{--                    @foreach ($errors->all() as $error)--}}
+{{--                        <li>{{ $error }}</li>--}}
+{{--                    @endforeach--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        @endif--}}
+{{--    </div>--}}
+
+    @include('layouts.notification')
+
+
     <div class="row">
         <div class="col-md-12">
             <div class="overview-wrap">
@@ -103,17 +124,9 @@ $users = User::all();
                         <th>Email</th>
                         <th>Phone</th>
                         <th class="text-right">Role</th>
-                        {{--                                        <th class="text-right">quantity</th>--}}
-                        {{--                                        <th class="text-right">total</th>--}}
                     </tr>
                     </thead>
                     <tbody>
-{{--                    <tr>--}}
-{{--                        <td>Sultan Dines</td>--}}
-{{--                        <td>farhan96.hm@gmail.com</td>--}}
-{{--                        <td>+8801515205881</td>--}}
-{{--                        <td class="text-right">Admin</td>--}}
-{{--                    </tr>--}}
                         @foreach($users as $user)
                         <tr>
                             <td>{{ $user->name }}</td>
@@ -428,7 +441,12 @@ $users = User::all();
 
 @endsection
 
+
+
+
 @section('Add_User_Model')
+
+
     {{--    Modal start--}}
 
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -440,18 +458,18 @@ $users = User::all();
 
                         <div class="form-group">
                             <label for="cc-payment" class="control-label mb-1"><strong>Resturant Name</strong></label>
-                            <input  name="name" type="text" class="form-control @error('name') is-invalid @enderror" aria-required="true" aria-invalid="false" value="">
+                            <input  name="name" type="text" class="form-control @error('name') is-invalid @enderror" aria-required="true" aria-invalid="false" value="" required>
                         </div>
 
 
                         <div class="form-group">
                             <label for="cc-payment" class="control-label mb-1"><strong>Email</strong></label>
-                            <input name="email" type="text" class="form-control @error('email') is-invalid @enderror" aria-required="true" aria-invalid="false" value="">
+                            <input name="email" type="text" class="form-control @error('email') is-invalid @enderror" aria-required="true" aria-invalid="false" value="" required>
                         </div>
 
                         <div class="form-group">
                             <label for="cc-payment" class="control-label mb-1"><strong>Phone</strong></label>
-                            <input name="phone" type="text" class="form-control @error('email') is-invalid @enderror" aria-required="true" aria-invalid="false" value="">
+                            <input name="phone" type="text" class="form-control @error('email') is-invalid @enderror" aria-required="true" aria-invalid="false" value="" required>
                         </div>
 
 
@@ -468,37 +486,17 @@ $users = User::all();
                             </label>
                         </div>
 
-{{--                        <label class="@error('email') is-invalid @enderror "></label>--}}
-
-{{--                        @error('name')--}}
-{{--                        <span class="invalid-feedback" role="alert">--}}
-{{--                            <strong>{{ $message }}</strong>--}}
-{{--                        </span>--}}
-{{--                        @enderror--}}
-
-{{--                        @error('email','name')--}}
-{{--                        <span class="invalid-feedback" role="alert">--}}
-{{--                            <strong>{{ $message }}</strong>--}}
-{{--                        </span>--}}
-{{--                        <div class="alert alert-danger">{{ $message }}</div>--}}
-{{--                        @enderror--}}
-
-{{--                        @error('phone')--}}
-{{--                        <span class="invalid-feedback" role="alert">--}}
-{{--                            <strong>{{ $message }}</strong>--}}
-{{--                        </span>--}}
-{{--                        @enderror--}}
 
 
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+{{--                        @if ($errors->any())--}}
+{{--                            <div class="alert alert-danger">--}}
+{{--                                <ul>--}}
+{{--                                    @foreach ($errors->all() as $error)--}}
+{{--                                        <li>{{ $error }}</li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
 
 
                         <div>

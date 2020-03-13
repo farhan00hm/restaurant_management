@@ -2,8 +2,10 @@
 
 @php
 use App\User;
+use App\Role;
 
 $users = User::all();
+
 
 @endphp
 
@@ -117,13 +119,14 @@ $users = User::all();
         <div class="col-lg-9">
             <h2 class="title-1 m-b-25"><strong>User's Information</strong></h2>
             <div class="table-responsive table--no-card m-b-40">
-                <table class="table table-borderless table-striped table-earning">
+                <table class="table table-borderless table-striped table-earning demotbl" id="table-menu">
                     <thead>
                     <tr>
                         <th>Restaurant Name</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th class="text-right">Role</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -133,6 +136,10 @@ $users = User::all();
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->role_id }}</td>
+                            <td>
+                                <button class="fa fa-edit" onClick="onEdit(this)" style="margin:5px;" data-toggle="modal" data-target="#modalLoginForm"></button>
+                                <button class="fa fa-remove" onClick="onDelete(this)" style="margin:5px;"></button>
+                            </td>
                         </tr>
                         @endforeach
 
@@ -439,6 +446,20 @@ $users = User::all();
         </div>
     </div>
 
+    <script>
+        function onEdit(td) {
+            selectedRow = td.parentElement.parentElement;
+            let user = [];
+            document.getElementById('restaurant_name').value = selectedRow.cells[0].innerHTML
+            user.push( selectedRow.cells[1].innerHTML);
+            user.push( selectedRow.cells[2].innerHTML);
+            user.push( selectedRow.cells[3].innerHTML);
+            console.log(user);
+            // document.getElementById("quantity").value = selectedRow.cells[1].innerHTML;
+            // document.getElementById("oday").value = selectedRow.cells[2].innerHTML;
+        }
+    </script>
+
 @endsection
 
 
@@ -458,7 +479,7 @@ $users = User::all();
 
                         <div class="form-group">
                             <label for="cc-payment" class="control-label mb-1"><strong>Resturant Name</strong></label>
-                            <input  name="name" type="text" class="form-control @error('name') is-invalid @enderror" aria-required="true" aria-invalid="false" value="" required>
+                            <input  name="name" type="text" class="form-control @error('name') is-invalid @enderror" aria-required="true" aria-invalid="false" id="restaurant_name" required>
                         </div>
 
 
@@ -517,3 +538,4 @@ $users = User::all();
 
     {{--    Modal End--}}
 @endsection
+

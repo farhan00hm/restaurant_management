@@ -7,6 +7,7 @@ use App\LogActivity;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+Use Mail;
 
 class AdminDashboardController extends Controller
 {
@@ -16,14 +17,17 @@ class AdminDashboardController extends Controller
 
     public function store(Request $request){
         $this->validateUser();
+        $randomPassword = $this->generatePassword(6);
 
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = bcrypt($this->generatePassword(6));
+        $user->password = bcrypt($randomPassword);
         $user->role_id = $request->role;
-        $user->save();
+//        $user->save();
+
+//        $this->sendEmail($user->name, $user->email, $randomPassword);
         return redirect()->route('admin.dashboard');
 
     }
@@ -46,8 +50,14 @@ class AdminDashboardController extends Controller
         return $randomPass;
     }
 
-    public function sendEmail(){
-
+    public function sendEmail($name,$email,$password){
+        $to_name=$name;
+        $to_email=$email;
+//        dd($to_name, $to_email);
+        $data=array("Name"=>$name,"pass"=>$password);
+        Mail::send('admin.mailview',$data, function($message) use ($to_name,$to_email){
+            $message->to($to_email)->subject("Your credential");
+        });
     }
 
 

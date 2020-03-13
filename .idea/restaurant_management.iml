@@ -96,5 +96,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ordermanagement" />
+    <orderEntry type="module" module-name="isratameen" />
+    <orderEntry type="module" module-name="client" />
   </component>
 </module>

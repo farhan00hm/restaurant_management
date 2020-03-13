@@ -471,6 +471,7 @@
 </div>
 
 @yield('Add_User_Model')
+
 <!-- Jquery JS-->
 <script src="{{ asset('assets/dashboardview/vendor/jquery-3.2.1.min.js') }}"></script>
 <!-- Bootstrap JS-->

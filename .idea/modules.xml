@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../client/.idea/client.iml" filepath="$PROJECT_DIR$/../client/.idea/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../isratameen/.idea/isratameen.iml" filepath="$PROJECT_DIR$/../isratameen/.idea/isratameen.iml" />
       <module fileurl="file://$PROJECT_DIR$/../ordermanagement/.idea/ordermanagement.iml" filepath="$PROJECT_DIR$/../ordermanagement/.idea/ordermanagement.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/restaurant_management.iml" filepath="$PROJECT_DIR$/.idea/restaurant_management.iml" />
     </modules>
